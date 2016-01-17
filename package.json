@@ -49,13 +49,20 @@
   "bugs": {
     "url": "https://github.com/math-io/frexp/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "const-ninf-float64": "^1.0.0",
+    "const-pinf-float64": "^1.0.0",
+    "math-float64-normalize": "^1.0.0",
+    "math-float64-to-words": "^1.0.0"
+  },
   "devDependencies": {
     "browserify": "12.x.x",
     "codecov": "1.x.x",
     "istanbul": "^0.4.1",
     "jshint": "2.x.x",
     "jshint-stylish": "2.x.x",
+    "math-power": "^1.0.0",
+    "math-round": "^1.0.0",
     "tap-spec": "4.x.x",
     "tape": "4.x.x",
     "testling": "1.x.x"
