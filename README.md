@@ -2,7 +2,7 @@ frexp
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][build-image]][build-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Splits a double-precision floating-point number into a normalized fraction and an integer power of two.
+> Splits a [double-precision floating-point number][ieee754] into a normalized fraction and an integer power of two.
 
 
 ## Installation
@@ -20,7 +20,7 @@ var frexp = require( 'math-frexp' );
 
 #### frexp( x )
 
-Splits a double-precision floating-point number into a normalized fraction and an integer power of two.
+Splits a [double-precision floating-point number][ieee754] into a normalized fraction and an integer power of two.
 
 ``` javascript
 var out = frexp( 4 );
@@ -161,3 +161,4 @@ Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 [testling]: https://ci.testling.com
 
 [compute-io]: https://github.com/compute-io/
+[ieee754]: https://en.wikipedia.org/wiki/IEEE_754-1985
