@@ -105,7 +105,7 @@ tape( 'the returned normalized fraction and exponent satisfy the relation `x = f
 	var i;
 
 	if ( typeof window === 'undefined' ) {
-		total = 1e4;
+		total = 1e3;
 	} else {
 		total = 200;
 	}
@@ -140,7 +140,7 @@ tape( 'the absolute value of the normalized fraction is on the interval [1/2,1)'
 	var i;
 
 	if ( typeof window === 'undefined' ) {
-		total = 1e4;
+		total = 1e3;
 	} else {
 		total = 200;
 	}
