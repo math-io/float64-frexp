@@ -96,6 +96,7 @@ tape( 'the function splits a float-point number into a normalized fraction and a
 });
 
 tape( 'the returned normalized fraction and exponent satisfy the relation `x = frac * 2**exp`', function test( t ) {
+	var total;
 	var sign;
 	var frac;
 	var exp;
@@ -103,7 +104,12 @@ tape( 'the returned normalized fraction and exponent satisfy the relation `x = f
 	var f;
 	var i;
 
-	for ( i = 0; i < 1e4; i++ ) {
+	if ( typeof window === 'undefined' ) {
+		total = 1e4;
+	} else {
+		total = 200;
+	}
+	for ( i = 0; i < total; i++ ) {
 		if ( Math.random() < 0.5 ) {
 			sign = -1;
 		} else {
@@ -125,6 +131,7 @@ tape( 'the returned normalized fraction and exponent satisfy the relation `x = f
 });
 
 tape( 'the absolute value of the normalized fraction is on the interval [1/2,1)', function test( t ) {
+	var total;
 	var sign;
 	var frac;
 	var exp;
@@ -132,7 +139,12 @@ tape( 'the absolute value of the normalized fraction is on the interval [1/2,1)'
 	var f;
 	var i;
 
-	for ( i = 0; i < 1e4; i++ ) {
+	if ( typeof window === 'undefined' ) {
+		total = 1e4;
+	} else {
+		total = 200;
+	}
+	for ( i = 0; i < total; i++ ) {
 		if ( Math.random() < 0.5 ) {
 			sign = -1;
 		} else {
