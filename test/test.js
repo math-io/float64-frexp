@@ -5,7 +5,19 @@
 var tape = require( 'tape' );
 var ninf = require( 'const-ninf-float64' );
 var pinf = require( 'const-pinf-float64' );
+var round = require( 'math-round' );
+var pow = require( 'math-power' );
+var abs = require( 'math-abs' );
+var getKeys = require( 'object-keys' );
 var frexp = require( './../lib' );
+
+
+// FIXTURES //
+
+var small = require( './fixtures/x_1e-200_1e-308.json' );
+var medium = require( './fixtures/x_-1e3_1e3.json' );
+var large = require( './fixtures/x_1e200_1e308.json' );
+var subnormal = require( './fixtures/x_1e-310_5e-324.json' );
 
 
 // TESTS //
@@ -15,15 +27,127 @@ tape( 'main export is a function', function test( t ) {
 	t.end();
 });
 
-tape( 'the function splits a float-point number into a normalized fraction and an integer power of two', function test( t ) {
-	// TODO: compare against Julia
-	t.ok( false );
+tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (small `x`)', function test( t ) {
+	var keys;
+	var key;
+	var x;
+	var f;
+	var i;
+
+	keys = getKeys( small );
+	for ( i = 0; i < keys.length; i++ ) {
+		key = keys[ i ];
+		x = parseFloat( key );
+		f = frexp( x );
+		t.deepEqual( f, small[ key ], 'returns expected results for ' + key );
+	}
+	t.end();
+});
+
+tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (medium `x`)', function test( t ) {
+	var keys;
+	var key;
+	var x;
+	var f;
+	var i;
+
+	keys = getKeys( medium );
+	for ( i = 0; i < keys.length; i++ ) {
+		key = keys[ i ];
+		x = parseFloat( key );
+		f = frexp( x );
+		t.deepEqual( f, medium[ key ], 'returns expected results for ' + key );
+	}
+	t.end();
+});
+
+tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (large `x`)', function test( t ) {
+	var keys;
+	var key;
+	var x;
+	var f;
+	var i;
+
+	keys = getKeys( large );
+	for ( i = 0; i < keys.length; i++ ) {
+		key = keys[ i ];
+		x = parseFloat( key );
+		f = frexp( x );
+		t.deepEqual( f, large[ key ], 'returns expected results for ' + key );
+	}
+	t.end();
+});
+
+tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (subnormal `x`)', function test( t ) {
+	var keys;
+	var key;
+	var x;
+	var f;
+	var i;
+
+	keys = getKeys( subnormal );
+	for ( i = 0; i < keys.length; i++ ) {
+		key = keys[ i ];
+		x = parseFloat( key );
+		f = frexp( x );
+		t.deepEqual( f, subnormal[ key ], 'returns expected results for ' + key );
+	}
 	t.end();
 });
 
 tape( 'the returned normalized fraction and exponent satisfy the relation `x = frac * 2**exp`', function test( t ) {
-	// TODO: basically run example code here and check for equality
-	t.ok( false );
+	var sign;
+	var frac;
+	var exp;
+	var x;
+	var f;
+	var i;
+
+	for ( i = 0; i < 1e4; i++ ) {
+		if ( Math.random() < 0.5 ) {
+			sign = -1;
+		} else {
+			sign = 1;
+		}
+		frac = Math.random() * 10;
+		exp = round( Math.random()*616 ) - 308;
+		x = sign * frac * pow( 10, exp );
+		f = frexp( x );
+
+		if ( f[ 1 ] > 1023 ) {
+			f = f[ 0 ] * pow( 2, 1023 ) * pow( 2, f[1]-1023 );
+		} else {
+			f = f[ 0 ] * pow( 2, f[ 1 ] );
+		}
+		t.equal( f, x, 'frac * 2^exp equals ' + x );
+	}
+	t.end();
+});
+
+tape( 'the absolute value of the normalized fraction is on the interval [1/2,1)', function test( t ) {
+	var sign;
+	var frac;
+	var exp;
+	var x;
+	var f;
+	var i;
+
+	for ( i = 0; i < 1e4; i++ ) {
+		if ( Math.random() < 0.5 ) {
+			sign = -1;
+		} else {
+			sign = 1;
+		}
+		frac = Math.random() * 10;
+		exp = round( Math.random()*614 ) - 307;
+		x = sign * frac * pow( 10, exp );
+		f = frexp( x );
+
+		// Compute the absolute value of the normalized fraction:
+		f = abs( f[ 0 ] );
+
+		t.ok( f >= 0.5 && f < 1, 'absolute value of the normalized fraction is on the interval [1/2,1). x: ' + x + '.' );
+	}
 	t.end();
 });
 
@@ -47,7 +171,7 @@ tape( 'if provided `+infinity`, the function returns [+infinity,0]', function te
 });
 
 tape( 'if provided `-infinity`, the function returns [-infinity,0]', function test( t ) {
-	var f = frexp( pinf );
+	var f = frexp( ninf );
 	t.deepEqual( f, [ninf,0], 'returns [-inf,0]' );
 	t.end();
 });

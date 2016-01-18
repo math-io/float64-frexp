@@ -24,7 +24,7 @@ Splits a [double-precision floating-point number][ieee754] into a normalized fra
 
 ``` javascript
 var out = frexp( 4 );
-// returns [ , ] // TODO
+// returns [ 0.5, 3 ]
 ```
 
 The first element of the returned `array` is the normalized fraction and the second is the exponent. The normalized fraction and exponent satisfy the relation `x = frac * 2**exp`.
@@ -34,7 +34,7 @@ var pow = require( 'math-power' );
 
 var x = 4;
 var out = frexp( x );
-// returns [ , ] // TODO
+// returns [ 0.5, 3 ]
 
 var frac = out[ 0 ];
 var exp = out[ 1 ];
@@ -65,13 +65,65 @@ out = frexp( ninf );
 // returns [ -infinity, 0 ]
 ```
 
-For all other `numeric` input values, the absolute value of the normalized fraction resides on the interval `[1/2,1)`.
+For all other `numeric` input values, the [absolute value][math-abs] of the normalized fraction resides on the interval `[1/2,1)`.
+
+
+## Notes
+
+*	Care should be taken when reconstituting a [double-precision floating-point number][ieee754] from a normalized fraction and an exponent. For example,
+
+	``` javascript
+	var pow = require( 'math-power' );
+
+	// x ~ 2**1023
+	var x = 8.988939926493918e+307;
+
+	var out = frexp( x );
+	// returns [ 0.5000263811533315, 1024 ]
+
+	// Naive reconstitution:
+	var y = out[ 0 ] * pow( 2, out[ 1 ] );
+	// returns +infinity
+
+	// Account for 2**1024 evaluating as infinity by recognizing 2**1024 = 2**1 * 2**1023:
+	y = out[ 0 ] * pow( 2, out[1]-1023 ) * pow( 2, 1023 );
+	// returns 8.988939926493918e+307
+	```
 
 
 ## Examples
 
 ``` javascript
-// TODO
+var round = require( 'math-round' );
+var pow = require( 'math-power' );
+var frexp = require( 'math-frexp' );
+
+var sign;
+var frac;
+var exp;
+var x;
+var f;
+var v;
+var i;
+
+// Generate random numbers and break each into a normalized fraction and an integer power of two...
+for ( i = 0; i < 100; i++ ) {
+	if ( Math.random() < 0.5 ) {
+		sign = -1;
+	} else {
+		sign = 1;
+	}
+	frac = Math.random() * 10;
+	exp = round( Math.random()*612 ) - 306;
+	x = sign * frac * pow( 10, exp );
+	f = frexp( x );
+	if ( f[ 1 ] > 1023 ) {
+		v = f[ 0 ] * pow( 2, f[1]-1023 ) * pow( 2, 1023 );
+	} else {
+		v = f[ 0 ] * pow( 2, f[ 1 ] );
+	}
+	console.log( '%d = %d * 2^%d = %d', x, f[ 0 ], f[ 1 ], v );
+}
 ```
 
 To run the example code from the top-level application directory,
@@ -162,3 +214,4 @@ Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 
 [compute-io]: https://github.com/compute-io/
 [ieee754]: https://en.wikipedia.org/wiki/IEEE_754-1985
+[math-abs]: https://github.com/math-io/abs

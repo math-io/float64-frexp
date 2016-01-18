@@ -52,6 +52,8 @@
   "dependencies": {
     "const-ninf-float64": "^1.0.0",
     "const-pinf-float64": "^1.0.0",
+    "math-float64-exponent": "git+https://github.com/math-io/float64-exponent.git",
+    "math-float64-from-words": "git+https://github.com/math-io/float64-from-words.git",
     "math-float64-normalize": "^1.0.0",
     "math-float64-to-words": "^1.0.0"
   },
@@ -61,8 +63,10 @@
     "istanbul": "^0.4.1",
     "jshint": "2.x.x",
     "jshint-stylish": "2.x.x",
+    "math-abs": "^1.0.2",
     "math-power": "^1.0.0",
     "math-round": "^1.0.0",
+    "object-keys": "^1.0.9",
     "tap-spec": "4.x.x",
     "tape": "4.x.x",
     "testling": "1.x.x"
