@@ -114,7 +114,7 @@ for ( i = 0; i < 100; i++ ) {
 		sign = 1;
 	}
 	frac = Math.random() * 10;
-	exp = round( Math.random()*612 ) - 306;
+	exp = round( Math.random()*616 ) - 308;
 	x = sign * frac * pow( 10, exp );
 	f = frexp( x );
 	if ( f[ 1 ] > 1023 ) {
