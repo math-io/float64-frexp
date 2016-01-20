@@ -46,9 +46,6 @@ var bool = ( x === frac * pow(2,exp) );
 If provided positive or negative `zero`, `NaN`, or positive or negative `infinity`, the `function` returns a two-element `array` containing the input value and an exponent equal to `0`.
 
 ``` javascript
-var pinf = require( 'const-pinf-float64' );
-var ninf = require( 'const-ninf-float64' );
-
 var out = frexp( 0 );
 // returns [ 0, 0 ]
 
@@ -58,10 +55,10 @@ out = frexp( -0 );
 out = frexp( NaN );
 // returns [ NaN, 0 ]
 
-out = frexp( pinf );
+out = frexp( Number.POSITIVE_INFINITY );
 // returns [ +infinity, 0 ]
 
-out = frexp( ninf );
+out = frexp( Number.NEGATIVE_INFINITY );
 // returns [ -infinity, 0 ]
 ```
 
