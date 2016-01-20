@@ -8,14 +8,14 @@ frexp
 ## Installation
 
 ``` bash
-$ npm install math-frexp
+$ npm install math-float64-frexp
 ```
 
 
 ## Usage
 
 ``` javascript
-var frexp = require( 'math-frexp' );
+var frexp = require( 'math-float64-frexp' );
 ```
 
 #### frexp( x )
@@ -93,7 +93,7 @@ For all other `numeric` input values, the [absolute value][math-abs] of the norm
 ``` javascript
 var round = require( 'math-round' );
 var pow = require( 'math-power' );
-var frexp = require( 'math-frexp' );
+var frexp = require( 'math-float64-frexp' );
 
 var sign;
 var frac;
@@ -187,23 +187,23 @@ $ make view-browser-tests
 Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 
 
-[npm-image]: http://img.shields.io/npm/v/math-frexp.svg
-[npm-url]: https://npmjs.org/package/math-frexp
+[npm-image]: http://img.shields.io/npm/v/math-float64-frexp.svg
+[npm-url]: https://npmjs.org/package/math-float64-frexp
 
-[build-image]: http://img.shields.io/travis/math-io/frexp/master.svg
-[build-url]: https://travis-ci.org/math-io/frexp
+[build-image]: http://img.shields.io/travis/math-io/float64-frexp/master.svg
+[build-url]: https://travis-ci.org/math-io/float64-frexp
 
-[coverage-image]: https://img.shields.io/codecov/c/github/math-io/frexp/master.svg
-[coverage-url]: https://codecov.io/github/math-io/frexp?branch=master
+[coverage-image]: https://img.shields.io/codecov/c/github/math-io/float64-frexp/master.svg
+[coverage-url]: https://codecov.io/github/math-io/float64-frexp?branch=master
 
-[dependencies-image]: http://img.shields.io/david/math-io/frexp.svg
-[dependencies-url]: https://david-dm.org/math-io/frexp
+[dependencies-image]: http://img.shields.io/david/math-io/float64-frexp.svg
+[dependencies-url]: https://david-dm.org/math-io/float64-frexp
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/math-io/frexp.svg
-[dev-dependencies-url]: https://david-dm.org/dev/math-io/frexp
+[dev-dependencies-image]: http://img.shields.io/david/dev/math-io/float64-frexp.svg
+[dev-dependencies-url]: https://david-dm.org/dev/math-io/float64-frexp
 
-[github-issues-image]: http://img.shields.io/github/issues/math-io/frexp.svg
-[github-issues-url]: https://github.com/math-io/frexp/issues
+[github-issues-image]: http://img.shields.io/github/issues/math-io/float64-frexp.svg
+[github-issues-url]: https://github.com/math-io/float64-frexp/issues
 
 [tape]: https://github.com/substack/tape
 [istanbul]: https://github.com/gotwarlost/istanbul

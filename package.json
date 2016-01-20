@@ -1,5 +1,5 @@
 {
-  "name": "math-frexp",
+  "name": "math-float64-frexp",
   "version": "0.0.0",
   "description": "Splits a double-precision floating-point number into a normalized fraction and an integer power of two.",
   "author": {
@@ -23,7 +23,7 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/math-io/frexp.git"
+    "url": "git://github.com/math-io/float64-frexp.git"
   },
   "keywords": [
     "compute.io",
@@ -47,7 +47,7 @@
     "number"
   ],
   "bugs": {
-    "url": "https://github.com/math-io/frexp/issues"
+    "url": "https://github.com/math-io/float64-frexp/issues"
   },
   "dependencies": {
     "const-ninf-float64": "^1.0.0",
