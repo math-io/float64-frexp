@@ -27,7 +27,7 @@ tape( 'main export is a function', function test( t ) {
 	t.end();
 });
 
-tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (small `x`)', function test( t ) {
+tape( 'the function splits a floating-point number into a normalized fraction and an integer power of two (small `x`)', function test( t ) {
 	var keys;
 	var key;
 	var x;
@@ -44,7 +44,7 @@ tape( 'the function splits a float-point number into a normalized fraction and a
 	t.end();
 });
 
-tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (medium `x`)', function test( t ) {
+tape( 'the function splits a floating-point number into a normalized fraction and an integer power of two (medium `x`)', function test( t ) {
 	var keys;
 	var key;
 	var x;
@@ -61,7 +61,7 @@ tape( 'the function splits a float-point number into a normalized fraction and a
 	t.end();
 });
 
-tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (large `x`)', function test( t ) {
+tape( 'the function splits a floating-point number into a normalized fraction and an integer power of two (large `x`)', function test( t ) {
 	var keys;
 	var key;
 	var x;
@@ -78,7 +78,7 @@ tape( 'the function splits a float-point number into a normalized fraction and a
 	t.end();
 });
 
-tape( 'the function splits a float-point number into a normalized fraction and an integer power of two (subnormal `x`)', function test( t ) {
+tape( 'the function splits a floating-point number into a normalized fraction and an integer power of two (subnormal `x`)', function test( t ) {
 	var keys;
 	var key;
 	var x;
